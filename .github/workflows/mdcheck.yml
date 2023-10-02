@@ -5,6 +5,12 @@ on:
       - "**/*.md"
       - "*.md"
       - assets/*.txt
+  pull_request:
+    types: ["synchronize", "ready_for_review"]
+    paths:
+      - "**/*.md"
+      - "*.md"
+      - assets/*.txt
 
 jobs:
   check_pr:

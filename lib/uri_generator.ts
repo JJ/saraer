@@ -31,8 +31,12 @@ export class URIgenerator {
     }/${sessionId}/${talkId}/${this.generateIdFromBrowser(headerData)}`;
   }
 
-  generateQRCode(sessionId: string, talkId: string, headerData: HeaderData) {
+  async generateQRCode(
+    sessionId: string,
+    talkId: string,
+    headerData: HeaderData
+  ) {
     const uri = this.generateUri(sessionId, talkId, headerData);
-    return qrcode(uri);
+    return await qrcode(uri);
   }
 }

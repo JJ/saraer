@@ -1,10 +1,13 @@
 // generate test for URIgenerator
 import {
+  assertExists,
   assertInstanceOf,
   assertNotEquals,
 } from "https://deno.land/std@0.174.0/testing/asserts.ts";
 
 import { HeaderData, URIgenerator } from "../lib/uri_generator.ts";
+
+import { qrcode } from "https://deno.land/x/qrcode/mod.ts";
 
 // import user-agents.json
 const userAgentData = JSON.parse(
@@ -42,12 +45,16 @@ Deno.test(function testUriGenerator() {
   }
 });
 
-Deno.test(function testUriGenerator() {
+Deno.test(async function testUriGenerator() {
   for (const header of userAgentData) {
     const sessionId = "session-1";
     const talkId = "talk-33";
-    const qr = aUriGenerator.generateQRCode(sessionId, talkId, header);
+    const qr: QRCode = await aUriGenerator.generateQRCode(
+      sessionId,
+      talkId,
+      header
+    );
     console.log(qr);
-    assertInstanceOf(qr, String);
+    assertExists(qr);
   }
 });

@@ -1,4 +1,4 @@
-name: "Comprobar errores ortográficos y de formato Markdown"
+name: "Check markdown for spelling and formatting errors"
 on:
   push:
     paths:
@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: Check out fuentes
         uses: actions/checkout@v4
-      - name: "Comprueba errores de formato Markdown"
+      - name: "Check format errors"
         uses: articulate/actions-markdownlint@v1
       - uses: rojopolis/spellcheck-github-actions@v0
-        name: "Comprueba ortografía"
+        name: "Checks spelling"
         with:
           source_files: "README.md docs/*.md"
           task_name: Spellcheck

@@ -1,2 +1,10 @@
 QR
 IDs
+JJ
+Saraer
+deno
+github
+https
+saraer
+svg
+yml

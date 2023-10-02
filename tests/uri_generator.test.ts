@@ -11,7 +11,6 @@ const aUriGenerator = new URIgenerator();
 
 Deno.test(function testURIgenerator() {
   for (const headerData of userAgentData) {
-    console.log(headerData);
     assertExists(aUriGenerator.generateIdFromBrowser(headerData));
   }
 });

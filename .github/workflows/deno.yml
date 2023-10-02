@@ -1,4 +1,4 @@
-name: lint and test with deno
+name: lint and test
 on:
   push:
     paths:

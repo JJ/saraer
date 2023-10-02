@@ -1,5 +1,8 @@
 // generate test for URIgenerator
-import { assertNotEquals } from "https://deno.land/std@0.174.0/testing/asserts.ts";
+import {
+  assertInstanceOf,
+  assertNotEquals,
+} from "https://deno.land/std@0.174.0/testing/asserts.ts";
 
 import { HeaderData, URIgenerator } from "../lib/uri_generator.ts";
 
@@ -18,7 +21,7 @@ for (const i in userAgentData) {
   }
 }
 
-const aUriGenerator = new URIgenerator();
+const aUriGenerator = new URIgenerator("https://test.data/test/");
 
 Deno.test(function testUserAgentDataProcessor() {
   for (const headerData of pairsOfData) {
@@ -26,5 +29,15 @@ Deno.test(function testUserAgentDataProcessor() {
       aUriGenerator.generateIdFromBrowser(headerData[0]),
       aUriGenerator.generateIdFromBrowser(headerData[1])
     );
+  }
+});
+
+Deno.test(function testUriGenerator() {
+  for (const header of userAgentData) {
+    const sessionId = "session-id";
+    const talkId = "talk-id";
+    const uri = aUriGenerator.generateUri(sessionId, talkId, header);
+    const realUri = new URL(uri);
+    assertInstanceOf(realUri, URL);
   }
 });

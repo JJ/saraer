@@ -9,10 +9,12 @@ export interface HeaderData {
 export class URIgenerator {
   private encoder: TextEncoder;
   private decoder: TextDecoder;
+  private URLprefix: string;
 
-  constructor() {
+  constructor(URLprefix: string) {
     this.encoder = new TextEncoder();
     this.decoder = new TextDecoder();
+    this.URLprefix = URLprefix;
   }
 
   generateIdFromBrowser({ user_agent, accept, accept_language }: HeaderData) {
@@ -22,5 +24,11 @@ export class URIgenerator {
       new Uint8Array(crypto.subtle.digestSync("SHA-256", data))
     );
     return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  generateUri(sessionId: string, talkId: string, headerData: HeaderData) {
+    return `${
+      this.URLprefix
+    }/${sessionId}/${talkId}/${this.generateIdFromBrowser(headerData)}`;
   }
 }

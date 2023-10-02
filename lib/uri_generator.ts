@@ -7,8 +7,12 @@ class URIgenerator {
     this.encoder = new TextEncoder();
   }
 
-  generateIdFromBrowser({ user_agent, accept, accept_language }) {
-    const string = `${user_agent} | ${accept} | ${accept_language}`;
+  generateIdFromBrowser({
+    user_agent: string,
+    accept: string,
+    accept_language: string,
+  }) {
+    const collated = `${user_agent} | ${accept} | ${accept_language}`;
     const data = this.encoder.encode(string);
     return crypto.subtle.digestSync("SHA-256", data);
   }

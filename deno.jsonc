@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "test": "deno test test/*.test.ts",
+    "lint": "deno lint lib/",
+  }
+}

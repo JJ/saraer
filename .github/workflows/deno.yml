@@ -16,7 +16,7 @@ jobs:
       - name: Working version
         uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.30
+          deno-version: v1.x
       - name: Fuentes
         uses: actions/checkout@v4
       - name: Lint

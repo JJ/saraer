@@ -35,8 +35,8 @@ export class URIgenerator {
     sessionId: string,
     talkId: string,
     headerData: HeaderData
-  ) {
+  ): Promise<string> {
     const uri = this.generateUri(sessionId, talkId, headerData);
-    return await qrcode(uri);
+    return (await qrcode(uri)).toString();
   }
 }

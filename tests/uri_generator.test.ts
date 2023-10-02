@@ -7,20 +7,20 @@ import { HeaderData, URIgenerator } from "../lib/uri_generator.ts";
 const userAgentData = JSON.parse(
   await Deno.readTextFile("tests/user-agents.json")
 );
+const pairsOfData: Array<Array<HeaderData>> = [];
+for (const i in userAgentData) {
+  const headerData = userAgentData[i];
+  for (const j in userAgentData) {
+    if (j <= i) {
+      continue;
+    }
+    pairsOfData.push([headerData, userAgentData[j]]);
+  }
+}
+
 const aUriGenerator = new URIgenerator();
 
-Deno.test(function testURIgenerator() {
-  const pairsOfData: Array<Array<HeaderData>> = [];
-  for (const i in userAgentData) {
-    const headerData = userAgentData[i];
-    for (const j in userAgentData) {
-      if (j <= i) {
-        continue;
-      }
-      pairsOfData.push([headerData, userAgentData[j]]);
-    }
-  }
-
+Deno.test(function testUserAgentDataProcessor() {
   for (const headerData of pairsOfData) {
     assertNotEquals(
       aUriGenerator.generateIdFromBrowser(headerData[0]),

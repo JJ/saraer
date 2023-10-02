@@ -41,3 +41,13 @@ Deno.test(function testUriGenerator() {
     assertInstanceOf(realUri, URL);
   }
 });
+
+Deno.test(function testUriGenerator() {
+  for (const header of userAgentData) {
+    const sessionId = "session-1";
+    const talkId = "talk-33";
+    const qr = aUriGenerator.generateQRCode(sessionId, talkId, header);
+    console.log(qr);
+    assertInstanceOf(qr, String);
+  }
+});

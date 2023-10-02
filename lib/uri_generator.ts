@@ -1,4 +1,5 @@
 import { crypto } from "https://deno.land/std@0.203.0/crypto/mod.ts";
+import { qrcode } from "https://deno.land/x/qrcode/mod.ts";
 
 export interface HeaderData {
   user_agent: string;
@@ -8,12 +9,10 @@ export interface HeaderData {
 
 export class URIgenerator {
   private encoder: TextEncoder;
-  private decoder: TextDecoder;
   private URLprefix: string;
 
   constructor(URLprefix: string) {
     this.encoder = new TextEncoder();
-    this.decoder = new TextDecoder();
     this.URLprefix = URLprefix;
   }
 
@@ -30,5 +29,10 @@ export class URIgenerator {
     return `${
       this.URLprefix
     }/${sessionId}/${talkId}/${this.generateIdFromBrowser(headerData)}`;
+  }
+
+  generateQRCode(sessionId: string, talkId: string, headerData: HeaderData) {
+    const uri = this.generateUri(sessionId, talkId, headerData);
+    return qrcode(uri);
   }
 }

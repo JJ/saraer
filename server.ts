@@ -4,7 +4,7 @@ import { HeaderData, URIgenerator } from "./lib/uri_generator.ts";
 // The "tickets" route will return beer ticket
 // The "beers" route will store the request and return a green tick mark
 
-my deploymentURL= Deno.env.get("DEPLOYMENT_URL") || "http://localhost:8000";
+const deploymentURL= Deno.env.get("DEPLOYMENT_URL") || "http://localhost:8000";
 
 // Create a URI generator
 const generator = new URIgenerator(deploymentURL);

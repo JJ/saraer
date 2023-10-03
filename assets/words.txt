@@ -8,3 +8,7 @@ https
 saraer
 svg
 yml
+Merelo
+GPL
+Affero
+mdcheck

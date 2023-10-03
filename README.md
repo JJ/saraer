@@ -10,3 +10,9 @@ QR can be scanned and gives you a beer, coffee, refreshment or whatever.
 
 The objective of this system is to gather data about which talks in an event
 give you more thirst, and whose unique IDs request more refreshments.
+
+## License
+
+(c) JJ Merelo, 2023
+
+This application is released under the Affero GPL license. Check the [LICENSE](LICENSE) file for more information.

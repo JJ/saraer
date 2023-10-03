@@ -1,6 +1,5 @@
 // generate test for URIgenerator
 import {
-  assertExists,
   assertInstanceOf,
   assertNotEquals,
   assertStringIncludes,

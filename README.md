@@ -15,4 +15,5 @@ give you more thirst, and whose unique IDs request more refreshments.
 
 (c) JJ Merelo, 2023
 
-This application is released under the Affero GPL license. Check the [LICENSE](LICENSE) file for more information.
+This application is released under the Affero GPL license. Check the
+[LICENSE](LICENSE) file for more information.

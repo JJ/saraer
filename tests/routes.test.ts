@@ -24,12 +24,12 @@ Deno.test(async function testTicketRoute() {
   await Deno.writeFile("tests/test.gif", bytes);
 
   const qr_decoder = new Deno.Command("zbarimg", { args: ["tests/test.gif"] });
-  const { code, stdout, _stderr } = await qr_decoder.output();
+  const { code, stdout, stderr } = await qr_decoder.output();
 
   await Deno.remove("tests/test.gif");
 
   assert(code === 0);
-
+  assert(stderr.length === 0);
   const decoder = new TextDecoder();
   const decodedOutput = decoder.decode(stdout);
 

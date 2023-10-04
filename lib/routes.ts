@@ -1,7 +1,7 @@
 import { URIgenerator } from "./uri_generator.ts";
 
 export function router(generator: URIgenerator) {
-  return async (request: Request) => {
+  return async (request: Request): Promise<Response> => {
     // Parse the request path
     const path = new URL(request.url).pathname;
     const headers = request.headers;
@@ -9,6 +9,7 @@ export function router(generator: URIgenerator) {
     if (route === "ticket") {
       return await ticket(generator, ticketData, headers);
     }
+    return new Response("Not found", { status: 404 });
   };
 }
 

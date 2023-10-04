@@ -8,21 +8,32 @@ export interface HeaderData {
 }
 
 export class URIgenerator {
-  private encoder: TextEncoder;
+  private encoder: TextEncoder = new TextEncoder();
   private URLprefix: string;
+  private cache: Map<string, string> = new Map();
 
   constructor(URLprefix: string) {
-    this.encoder = new TextEncoder();
     this.URLprefix = URLprefix;
   }
 
-  generateIdFromBrowser({ user_agent, accept, accept_language }: HeaderData) {
+  generateIdFromBrowser({
+    user_agent,
+    accept,
+    accept_language,
+  }: HeaderData): string {
     const collated = `${user_agent} | ${accept} | ${accept_language}`;
+    if (this.cache.has(collated)) {
+      return this.cache.get(collated) as string;
+    }
     const data = this.encoder.encode(collated);
     const hashArray = Array.from(
       new Uint8Array(crypto.subtle.digestSync("SHA-256", data))
     );
-    return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+    this.cache.set(
+      collated,
+      hashArray.map((b) => b.toString(16).padStart(2, "0")).join("")
+    );
+    return this.cache.get(collated) as string;
   }
 
   generateUri(sessionId: string, talkId: string, headerData: HeaderData) {

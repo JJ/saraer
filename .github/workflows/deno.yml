@@ -22,6 +22,6 @@ jobs:
       - name: Lint
         run: deno task lint
       - name: Install external tools for testing
-        run: sudo apt install zbarimg
+        run: sudo apt install zbar-tools
       - name: test
         run: deno task test

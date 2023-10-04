@@ -1,5 +1,8 @@
 import { BeerBucket } from "../lib/beers.ts";
-import { assertEquals } from "https://deno.land/std@0.174.0/testing/asserts.ts";
+import {
+  assertEquals,
+  assertThrows,
+} from "https://deno.land/std@0.174.0/testing/asserts.ts";
 
 const maxBeers = 4;
 
@@ -17,4 +20,9 @@ Deno.test(" BeerBucket should consume tickets only once", () => {
     assertEquals(beerBucket.consumeTicket(ticket), true);
     assertEquals(beerBucket.consumeTicket(ticket), false);
   }
+});
+
+Deno.test("BeerBucket should check if all beers have been consumed", () => {
+  beerBucket.consumeTicket("session-1/talk-3/user-id-3");
+  assertThrows(() => beerBucket.consumeTicket("session-1/talk-2/user-id-4"));
 });

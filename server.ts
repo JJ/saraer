@@ -14,4 +14,4 @@ let config = {};
 if (deploymentPort) {
   config = { port: parseInt(deploymentPort) };
 }
-Deno.serve(config, 1router(generator) );
+Deno.serve(config, router(generator));

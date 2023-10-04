@@ -13,13 +13,10 @@ Deno.test(async function testTicketRoute() {
   headers.set("accept", "test-accept");
   headers.set("accept-language", "test-accept-language");
 
-  const response = await ticket(aUriGenerator, ticketData, headers);
+  const ticketImg = await ticket(aUriGenerator, ticketData, headers);
 
-  assertInstanceOf(response, Response);
-  assert(response.headers.get("content-type") === "image/gif");
-  const body = await response.text();
-  assert(body.startsWith("data:image/gif;base64,"));
-  const data = body.slice(22);
+  assert(ticketImg.startsWith("data:image/gif;base64,"));
+  const data = ticketImg.slice(22);
   const bytes = Uint8Array.from(atob(data), (c) => c.charCodeAt(0));
   await Deno.writeFile("tests/test.gif", bytes);
 

@@ -19,4 +19,13 @@ Deno.test(async function testTicketRoute() {
   assert(response.headers.get("content-type") === "image/gif");
   const body = await response.text();
   assert(body.startsWith("data:image/gif;base64,"));
+  // save body as gif file
+  const data = body.slice(22);
+  const bytes = Uint8Array.from(atob(data), (c) => c.charCodeAt(0));
+  await Deno.writeFile("tests/test.gif", bytes);
+
+  // run external command zbarimg on that file
+  const qr_decoder = new Deno.Command("zbarimg", { args: ["tests/test.gif"] });
+  const { code, stdout, stderr } = await qr_decoder.output();
+  console.log(code, stdout, stderr);
 });

@@ -57,15 +57,18 @@ Deno.test(
   }
 );
 
-Deno.test(async function testUriGenerator() {
-  for (const header of userAgentData) {
-    const sessionId = "session-1";
-    const talkId = "talk-33";
-    const qr: string = await aUriGenerator.generateQRCode(
-      sessionId,
-      talkId,
-      header
-    );
-    assertStringIncludes(qr, "data:image/gif;base64,");
+Deno.test(
+  "The QR is generated as a Base64 image",
+  async function testUriGenerator() {
+    for (const header of userAgentData) {
+      const sessionId = "session-1";
+      const talkId = "talk-33";
+      const qr: string = await aUriGenerator.generateQRCode(
+        sessionId,
+        talkId,
+        header
+      );
+      assertStringIncludes(qr, "data:image/gif;base64,");
+    }
   }
-});
+);

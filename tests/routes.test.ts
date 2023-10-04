@@ -27,10 +27,14 @@ Deno.test(async function testTicketRoute() {
   const { code, stdout, stderr } = await qr_decoder.output();
 
   await Deno.remove("tests/test.gif");
+  const decoder = new TextDecoder();
 
   assert(code === 0);
-  assert(stderr.length === 0);
-  const decoder = new TextDecoder();
+  assert(
+    decoder
+      .decode(stderr)
+      .startsWith("scanned 1 barcode symbols from 1 images in")
+  );
   const decodedOutput = decoder.decode(stdout);
 
   assert(decodedOutput.startsWith("QR-Code:"));

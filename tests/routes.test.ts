@@ -23,26 +23,20 @@ Deno.test(async function testTicketRoute() {
   const bytes = Uint8Array.from(atob(data), (c) => c.charCodeAt(0));
   await Deno.writeFile("tests/test.gif", bytes);
 
-  // run external command zbarimg on that file
   const qr_decoder = new Deno.Command("zbarimg", { args: ["tests/test.gif"] });
   const { code, stdout, stderr } = await qr_decoder.output();
   assert(code === 0);
 
-  // decode stdout to string
   const decoder = new TextDecoder();
   const decodedOutput = decoder.decode(stdout);
   console.log(decodedOutput);
 
-  // check that the output is correct
   assert(decodedOutput.startsWith("QR-Code:"));
 
-  // check that the output contains the sessionId
   assert(decodedOutput.includes(ticketData[0]));
 
-  // check that the output contains the talkId
   assert(decodedOutput.includes(ticketData[1]));
 
-  // check that the output contains a digest as last fragment
   const digest = decodedOutput.split("/").pop();
   assert(digest !== undefined);
 });

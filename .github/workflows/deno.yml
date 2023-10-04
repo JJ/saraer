@@ -5,6 +5,7 @@ on:
       - "**/*.js"
       - "**/*.ts"
       - "deno.*"
+      - ".github/workflows/deno.yaml"
   pull_request:
     paths:
       - "**/*.ts"

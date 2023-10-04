@@ -5,10 +5,8 @@ export function router(generator: URIgenerator) {
     console.log(request.url);
     const path = new URL(request.url).pathname;
     const headers = request.headers;
-    //  split the path into the route (first element) and the rest in ticketData
 
     const [_, route, ...ticketData] = path.split("/");
-    console.log(route);
     if (route === "ticket") {
       const ticketImg = await ticket(generator, ticketData, headers);
       return new Response(`<img src=\'${ticketImg}\'>`, {

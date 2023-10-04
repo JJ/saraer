@@ -32,7 +32,6 @@ Deno.test(async function testTicketRoute() {
 
   const decoder = new TextDecoder();
   const decodedOutput = decoder.decode(stdout);
-  console.log(decodedOutput);
 
   assert(decodedOutput.startsWith("QR-Code:"));
 

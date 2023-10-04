@@ -1,4 +1,4 @@
-import { URIgenerator } from "./uri_generator.ts";
+import { HeaderData, URIgenerator } from "./uri_generator.ts";
 
 export function router(generator: URIgenerator) {
   return async (request: Request) => {
@@ -12,7 +12,7 @@ export function router(generator: URIgenerator) {
   };
 }
 
-async function ticket(
+export async function ticket(
   generator: URIgenerator,
   ticketData: Array<string>,
   headers: Headers

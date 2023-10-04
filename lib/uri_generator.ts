@@ -11,6 +11,7 @@ export class URIgenerator {
   private encoder: TextEncoder = new TextEncoder();
   private URLprefix: string;
   private cache: Map<string, string> = new Map();
+  private digestSet: Set<string> = new Set();
 
   constructor(URLprefix: string) {
     this.URLprefix = URLprefix;
@@ -29,10 +30,11 @@ export class URIgenerator {
     const hashArray = Array.from(
       new Uint8Array(crypto.subtle.digestSync("SHA-256", data))
     );
-    this.cache.set(
-      collated,
-      hashArray.map((b) => b.toString(16).padStart(2, "0")).join("")
-    );
+    const digest = hashArray
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+    this.cache.set(collated, digest);
+    this.digestSet.add(digest);
     return this.cache.get(collated) as string;
   }
 
@@ -49,5 +51,9 @@ export class URIgenerator {
   ): Promise<string> {
     const uri = this.generateUri(sessionId, talkId, headerData);
     return (await qrcode(uri)).toString();
+  }
+
+  isUserRegistered(digest: string): boolean {
+    return this.digestSet.has(digest);
   }
 }

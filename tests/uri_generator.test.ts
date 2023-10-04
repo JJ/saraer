@@ -33,6 +33,7 @@ Deno.test(
       const generatedIdFromCache =
         aUriGenerator.generateIdFromBrowser(headerData);
       assertEquals(generatedId, generatedIdFromCache);
+      assertEquals(aUriGenerator.isUserRegistered(generatedId), true);
     }
 
     for (const headerData of pairsOfData) {

@@ -28,9 +28,9 @@ export async function ticket(
     accept_language: headers.get("accept-language") || "",
   });
 
-  return new Response(ticket, {
+  return new Response(`<img src=\'${ticket}\'>`, {
     headers: {
-      "content-type": "image/gif",
+      "content-type": "text/html",
     },
   });
 }

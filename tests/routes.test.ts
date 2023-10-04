@@ -1,5 +1,5 @@
 import { URIgenerator } from "../lib/uri_generator.ts";
-import { ticket } from "../lib/routes.ts";
+import { router, ticket } from "../lib/routes.ts";
 import { assert } from "https://deno.land/std@0.203.0/assert/assert.ts";
 
 const aUriGenerator = new URIgenerator("https://test.data/test/");
@@ -46,3 +46,10 @@ Deno.test(
     assert(digest !== undefined);
   }
 );
+
+Deno.test("The router should return a 404 for an unknown route", async () => {
+  const ourRouter = router(aUriGenerator);
+  const request = new Request("https://test.data/unknown-route");
+  const response = await ourRouter(request);
+  assert(response.status === 404);
+});

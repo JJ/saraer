@@ -1,6 +1,6 @@
 export class BeerBucket {
-  private totalBeersConsumed: number = 0;
-  private maxBeers: number = 0;
+  private totalBeersConsumed = 0;
+  private maxBeers = 0;
   private ticketsConsumed: Set<string> = new Set();
   private beersByTalk: Map<string, number> = new Map();
   private beersBySession: Map<string, number> = new Map();

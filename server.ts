@@ -1,4 +1,4 @@
-import { HeaderData, URIgenerator } from "./lib/uri_generator.ts";
+import { URIgenerator } from "./lib/uri_generator.ts";
 import { router } from "./lib/routes.ts";
 
 // Serve two routes, one for "tickets" and one for "beers
@@ -14,4 +14,4 @@ let config = {};
 if (deploymentPort) {
   config = { port: parseInt(deploymentPort) };
 }
-Deno.server(router, config);
+Deno.server(router(generator), config);

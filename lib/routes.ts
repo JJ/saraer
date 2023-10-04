@@ -1,4 +1,4 @@
-import { HeaderData, URIgenerator } from "./uri_generator.ts";
+import { URIgenerator } from "./uri_generator.ts";
 
 export function router(generator: URIgenerator) {
   return async (request: Request) => {

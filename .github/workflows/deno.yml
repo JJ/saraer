@@ -21,5 +21,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Lint
         run: deno task lint
+      - name: Install external tools for testing
+        run: sudo apt install zbarimg
       - name: test
         run: deno task test

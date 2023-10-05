@@ -56,4 +56,8 @@ export class URIgenerator {
   isUserRegistered(digest: string): boolean {
     return this.digestSet.has(digest);
   }
+
+  getUserDigests(): Array<string> {
+    return Array.from(this.digestSet);
+  }
 }

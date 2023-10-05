@@ -73,3 +73,10 @@ Deno.test(
     }
   }
 );
+
+Deno.test(
+  "We have as many different users as we have user agents",
+  function testNumberOfUsers() {
+    assertEquals(aUriGenerator.getUserDigests().length, userAgentData.length);
+  }
+);

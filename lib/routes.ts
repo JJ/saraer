@@ -1,4 +1,5 @@
 import { URIgenerator } from "./uri_generator.ts";
+import { BeerBucket } from "./beers.ts";
 
 export function router(generator: URIgenerator) {
   return async (request: Request): Promise<Response> => {
@@ -15,6 +16,30 @@ export function router(generator: URIgenerator) {
         },
       });
     }
+    if (route === "beer") {
+      const goodTicket = beer(generator.bucket, ticketData);
+      if (goodTicket) {
+        return new Response(
+          `<div style="font-size: 100px; color: green;">&#10004;</div>`,
+          {
+            headers: {
+              "content-type": "text/html",
+            },
+          }
+        );
+      } else {
+        // similarly styled red cross for bad ticket
+        return new Response(
+          `<div style="font-size: 100px; color: red;">&#10008;</div>`,
+          {
+            headers: {
+              "content-type": "text/html",
+            },
+          }
+        );
+      }
+    }
+
     return new Response("Not found", { status: 404 });
   };
 }
@@ -32,4 +57,9 @@ export async function ticket(
   });
 
   return ticket;
+}
+
+export function beer(bucket: BeerBucket, ticketData: Array<string>): boolean {
+  const [sessionId, talkId, userId] = ticketData;
+  return bucket.consumeTicket(`${sessionId}/${talkId}/${userId}`);
 }

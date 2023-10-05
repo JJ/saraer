@@ -1,7 +1,7 @@
 import { URIgenerator } from "./uri_generator.ts";
 import { BeerBucket } from "./beers.ts";
 
-export function router(generator: URIgenerator) {
+export function router(generator: URIgenerator, bucket: BeerBucket) {
   return async (request: Request): Promise<Response> => {
     console.log(request.url);
     const path = new URL(request.url).pathname;
@@ -17,7 +17,7 @@ export function router(generator: URIgenerator) {
       });
     }
     if (route === "beer") {
-      const goodTicket = beer(generator.bucket, ticketData);
+      const goodTicket = beer(bucket, ticketData);
       if (goodTicket) {
         return new Response(
           `<div style="font-size: 100px; color: green;">&#10004;</div>`,

@@ -1,4 +1,6 @@
 import { URIgenerator } from "../lib/uri_generator.ts";
+import { BeerBucket } from "../lib/beers.ts";
+
 import { router, ticket } from "../lib/routes.ts";
 import {
   assertEquals,
@@ -7,6 +9,7 @@ import {
 } from "https://deno.land/std@0.174.0/testing/asserts.ts";
 
 const aUriGenerator = new URIgenerator("https://test.data/test/");
+const aBeerBucket = new BeerBucket(10);
 
 Deno.test(
   "The ticket code should be generated correctly",
@@ -52,7 +55,7 @@ Deno.test(
   }
 );
 
-const ourRouter = router(aUriGenerator);
+const ourRouter = router(aUriGenerator, aBeerBucket);
 
 Deno.test("The router should return a 404 for an unknown route", async () => {
   const request = new Request("https://test.data/unknown-route");

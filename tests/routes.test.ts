@@ -71,3 +71,24 @@ Deno.test("The router should return a ticket for a known route", async () => {
   assertEquals(text.startsWith("<img src='data:image/gif;base64,"), true);
   assertEquals(response.headers.get("content-type"), "text/html");
 });
+
+Deno.test("The router should return a beer for a known ticket", async () => {
+  const knownUserDigest = aUriGenerator.getUserDigests()[0];
+  const ticketPath = `https://test.data/beer/session-id/talk-id/${knownUserDigest}`;
+  const request = new Request(ticketPath);
+  const response = await ourRouter(request);
+  assertEquals(response.status, 200);
+  const text = await response.text();
+  assertEquals(
+    text,
+    '<div style="font-size: 100px; color: green;">&#10004;</div>'
+  );
+  assertEquals(response.headers.get("content-type"), "text/html");
+  const badTicketResponse = await ourRouter(request);
+  assertEquals(badTicketResponse.status, 200);
+  const badTicketText = await badTicketResponse.text();
+  assertEquals(
+    badTicketText,
+    '<div style="font-size: 100px; color: red;">&#10008;</div>'
+  );
+});

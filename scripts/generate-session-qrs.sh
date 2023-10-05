@@ -9,8 +9,8 @@
 
 # The script will generate 3 sessions with 3 talks each, and output the QR codes in /tmp/qrs
 
-prefix=${1:-"http://localhost:8080"}
-sessions=${2:-1}
+prefix=${1:-"https://databeers-tickets.deno.dev/ticket/"}
+sessions=${2:-4}
 talks=${3:-8}
 output=${4:-'/tmp/qrs'}
 

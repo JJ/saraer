@@ -8,13 +8,14 @@ import {
   assertStringIncludes,
 } from "https://deno.land/std@0.174.0/testing/asserts.ts";
 
-const aUriGenerator = new URIgenerator("https://test.data/test/");
+const testURL = "https://test.data/test/";
+const aUriGenerator = new URIgenerator(testURL);
 const aBeerBucket = new BeerBucket(10);
 
 Deno.test(
   "The ticket code should be generated correctly",
   async function testTicketRoute() {
-    const ticketData = ["session-id", "talk-id"];
+    const ticketData = ["1", "1"];
     const headers = new Headers();
     headers.set("user-agent", "test-user-agent");
     headers.set("accept", "test-accept");
@@ -43,12 +44,17 @@ Deno.test(
       true
     );
     const decodedOutput = decoder.decode(stdout);
-
     assertEquals(decodedOutput.startsWith("QR-Code:"), true);
+    const URLRegexString = `${testURL}/?\\d+\/\\d+\/\\w+`;
+    const URLRegex = new RegExp(URLRegexString);
+    const decodedURLMatch = decodedOutput.match(URLRegex);
+    let decodedURL = "";
+    if (decodedURLMatch) {
+      decodedURL = decodedURLMatch[0];
+    }
+    assertStringIncludes(decodedURL, `${testURL}/${ticketData[0]}`);
 
-    assertStringIncludes(decodedOutput, ticketData[0]);
-
-    assertStringIncludes(decodedOutput, ticketData[1]);
+    assertStringIncludes(decodedURL, `/${ticketData[1]}/`);
 
     const digest = decodedOutput.split("/").pop();
     assertExists(digest);

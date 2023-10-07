@@ -19,14 +19,14 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
     if (route === "beer") {
       const goodTicket = beer(bucket, ticketData);
       if (goodTicket) {
-        return new Response(stylize("&#10004"), {
+        return new Response(stylize("&#10004", "green"), {
           headers: {
             "content-type": "text/html",
           },
         });
       } else {
         // similarly styled red cross for bad ticket
-        return new Response(stylize("&#10008"), {
+        return new Response(stylize("&#10008", "red"), {
           headers: {
             "content-type": "text/html",
           },
@@ -58,6 +58,6 @@ export function beer(bucket: BeerBucket, ticketData: Array<string>): boolean {
   return bucket.consumeTicket(`${sessionId}/${talkId}/${userId}`);
 }
 
-function stylize(text: string) {
-  return `<div style="font-size:90vw">${text}</div>`;
+function stylize(text: string, color = "black") {
+  return `<div style="font-size:90vw; color:${color}">${text}</div>`;
 }

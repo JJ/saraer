@@ -1,7 +1,7 @@
 import { URIgenerator } from "../lib/uri_generator.ts";
 import { BeerBucket } from "../lib/beers.ts";
 
-import { router, ticket } from "../lib/routes.ts";
+import { router, ticket, check, cross } from "../lib/routes.ts";
 import {
   assertEquals,
   assertExists,
@@ -85,10 +85,10 @@ Deno.test("The router should return a beer for a known ticket", async () => {
   const response = await ourRouter(request);
   assertEquals(response.status, 200);
   const text = await response.text();
-  assertStringIncludes(text, "&#10004");
+  assertStringIncludes(text, check);
   assertEquals(response.headers.get("content-type"), "text/html");
   const badTicketResponse = await ourRouter(request);
   assertEquals(badTicketResponse.status, 200);
   const badTicketText = await badTicketResponse.text();
-  assertStringIncludes(badTicketText, "&#10008");
+  assertStringIncludes(badTicketText, cross);
 });

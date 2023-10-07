@@ -1,6 +1,10 @@
 import { URIgenerator } from "./uri_generator.ts";
 import { BeerBucket } from "./beers.ts";
 
+//
+export const check = "&#9989";
+export const cross = "&#10060";
+
 export function router(generator: URIgenerator, bucket: BeerBucket) {
   return async (request: Request): Promise<Response> => {
     console.log(request.url);
@@ -19,9 +23,9 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
     if (route === "beer") {
       const goodTicket = beer(bucket, ticketData);
       if (goodTicket) {
-        return respond("&#10004", "green");
+        return respond(check);
       } else {
-        return respond("&#10008", "red");
+        return respond(cross);
       }
     }
 

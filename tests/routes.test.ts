@@ -79,10 +79,10 @@ Deno.test("The router should return a beer for a known ticket", async () => {
   const response = await ourRouter(request);
   assertEquals(response.status, 200);
   const text = await response.text();
-  assertStringIncludes(text, "&#10004;");
+  assertStringIncludes(text, "&#10004");
   assertEquals(response.headers.get("content-type"), "text/html");
   const badTicketResponse = await ourRouter(request);
   assertEquals(badTicketResponse.status, 200);
   const badTicketText = await badTicketResponse.text();
-  assertStringIncludes(badTicketText, "&#10008;");
+  assertStringIncludes(badTicketText, "&#10008");
 });

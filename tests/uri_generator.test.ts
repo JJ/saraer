@@ -8,7 +8,6 @@ import {
 
 import { HeaderData, URIgenerator } from "../lib/uri_generator.ts";
 
-// import user-agents.json
 const userAgentData = JSON.parse(
   await Deno.readTextFile("tests/user-agents.json")
 );

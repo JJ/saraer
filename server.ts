@@ -8,7 +8,7 @@ const BEERS = parseInt(Deno.env.get("BEERS") || "10");
 const beerRoute = Deno.env.get("BEER_ROUTE") || "beer";
 
 // Create a URI generator
-const generator = new URIgenerator(`${deploymentURL}/${beerRoute}/`);
+const generator = new URIgenerator(`${deploymentURL}/${beerRoute}`);
 const beerBucket = new BeerBucket(BEERS);
 let config = {};
 if (deploymentPort) {

@@ -50,7 +50,6 @@ export class URIgenerator {
     headerData: HeaderData
   ): Promise<string> {
     const uri = this.generateUri(sessionId, talkId, headerData);
-    console.log("Session ", sessionId, " talk ", talkId, " URI ", uri);
     return (await qrcode(uri)).toString();
   }
 

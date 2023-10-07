@@ -8,7 +8,7 @@ import {
   assertStringIncludes,
 } from "https://deno.land/std@0.174.0/testing/asserts.ts";
 
-const testURL = "https://test.data/test/";
+const testURL = "https://test.data/test";
 const aUriGenerator = new URIgenerator(testURL);
 const aBeerBucket = new BeerBucket(10);
 

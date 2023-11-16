@@ -11,7 +11,7 @@
 
 prefix=${1:-"https://databeers-tickets.deno.dev/ticket/"}
 sessions=${2:-4}
-talks=${3:-8}
+talks=${3:-4}
 output=${4:-'/tmp/qrs'}
 
 echo $prefix $sessions $talks $output

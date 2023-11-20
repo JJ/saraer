@@ -15,7 +15,6 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
     const [_, route, ...ticketData] = path.split("/");
     if (route === "ticket") {
       const ticketImg = await ticket(generator, ticketData, headers);
-      tickets.push(ticketData);
       return new Response(`<img src=\'${ticketImg}\'>`, {
         headers: {
           "content-type": "text/html",

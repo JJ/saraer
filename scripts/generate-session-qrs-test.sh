@@ -17,6 +17,6 @@ echo $prefix $sessions $talks $output
 
 
   for j in $(seq 1 $talks); do
-    qrencode -s 24 -o $output/session-0-talk-$j.png "$prefix/$i/$j"
+    qrencode -s 48 -d 300 -o $output/session-0-talk-$j.png "$prefix/$i/$j"
   done
 

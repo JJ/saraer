@@ -1,0 +1,23 @@
+{
+  "name": "saraer",
+  "version": "1.0.0",
+  "description": "Organize events and create tickets for them",
+  "main": "scripts/generate-slides.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tickets",
+    "events",
+    "qrcode"
+  ],
+  "author": "JJ Merelo",
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "nodejs-pptx": "^1.2.4"
+  }
+}

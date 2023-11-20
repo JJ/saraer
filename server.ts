@@ -4,10 +4,9 @@ import { BeerBucket } from "./lib/beers.ts";
 
 const deploymentURL = Deno.env.get("DEPLOYMENT_URL") || "http://localhost";
 const deploymentPort = Deno.env.get("DEPLOYMENT_PORT");
-const BEERS = parseInt(Deno.env.get("BEERS") || "10");
+const BEERS = parseInt(Deno.env.get("BEERS") || "1000");
 const beerRoute = Deno.env.get("BEER_ROUTE") || "beer";
 
-// Create a URI generator
 const generator = new URIgenerator(`${deploymentURL}/${beerRoute}`);
 const beerBucket = new BeerBucket(BEERS);
 let config = {};

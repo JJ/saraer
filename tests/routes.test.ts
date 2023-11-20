@@ -92,3 +92,14 @@ Deno.test("The router should return a beer for a known ticket", async () => {
   const badTicketText = await badTicketResponse.text();
   assertStringIncludes(badTicketText, cross);
 });
+
+Deno.test("The router should return a list of beers", async () => {
+  const request = new Request("https://test.data/beers");
+  const response = await ourRouter(request);
+  assertEquals(response.status, 200);
+  assertEquals(response.headers.get("content-type"), "application/json");
+  const text = await response.text();
+  console.log(text);
+  const beers = JSON.parse(text);
+  assertEquals(beers.length, 1);
+});

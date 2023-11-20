@@ -5,6 +5,8 @@ import { BeerBucket } from "./beers.ts";
 export const check = "&#9989";
 export const cross = "&#10060";
 
+const tickets: string[][] = [];
+const beers: string[][] = [];
 export function router(generator: URIgenerator, bucket: BeerBucket) {
   return async (request: Request): Promise<Response> => {
     console.log(request.url);
@@ -14,19 +16,30 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
     const [_, route, ...ticketData] = path.split("/");
     if (route === "ticket") {
       const ticketImg = await ticket(generator, ticketData, headers);
+      tickets.push(ticketData);
       return new Response(`<img src=\'${ticketImg}\'>`, {
         headers: {
           "content-type": "text/html",
         },
       });
     }
+
     if (route === "beer") {
       const goodTicket = beer(bucket, ticketData);
       if (goodTicket) {
+        beers.push(ticketData);
         return respond(check);
       } else {
         return respond(cross);
       }
+    }
+
+    if (route === "beers") {
+      return new Response(JSON.stringify(beers), {
+        headers: {
+          "content-type": "application/json",
+        },
+      });
     }
 
     return new Response("Not found", { status: 404 });

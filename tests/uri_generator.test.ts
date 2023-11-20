@@ -79,3 +79,10 @@ Deno.test(
     assertEquals(aUriGenerator.getUserDigests().length, userAgentData.length);
   }
 );
+
+Deno.test(
+  "We have as many URIs as we have user agents times 2",
+  function testNumberOfURIs() {
+    assertEquals(aUriGenerator.URIs.length, userAgentData.length * 2);
+  }
+);

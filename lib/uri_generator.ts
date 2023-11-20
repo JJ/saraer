@@ -12,6 +12,7 @@ export class URIgenerator {
   private URLprefix: string;
   private cache: Map<string, string> = new Map();
   private digestSet: Set<string> = new Set();
+  private generatedURIs: Set<string> = new Set();
 
   constructor(URLprefix: string) {
     this.URLprefix = URLprefix;
@@ -39,9 +40,15 @@ export class URIgenerator {
   }
 
   generateUri(sessionId: string, talkId: string, headerData: HeaderData) {
-    return `${
+    const generatedUri = `${
       this.URLprefix
     }/${sessionId}/${talkId}/${this.generateIdFromBrowser(headerData)}`;
+    this.generatedURIs.add(generatedUri);
+    return generatedUri;
+  }
+
+  get URIs(): Array<string> {
+    return Array.from(this.generatedURIs);
   }
 
   async generateQRCode(

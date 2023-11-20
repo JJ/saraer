@@ -5,7 +5,6 @@ import { BeerBucket } from "./beers.ts";
 export const check = "&#9989";
 export const cross = "&#10060";
 
-const tickets: string[][] = [];
 const beers: string[][] = [];
 export function router(generator: URIgenerator, bucket: BeerBucket) {
   return async (request: Request): Promise<Response> => {
@@ -20,6 +19,14 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
       return new Response(`<img src=\'${ticketImg}\'>`, {
         headers: {
           "content-type": "text/html",
+        },
+      });
+    }
+
+    if (route === "tickets") {
+      return new Response(JSON.stringify(generator.URIs), {
+        headers: {
+          "content-type": "application/json",
         },
       });
     }

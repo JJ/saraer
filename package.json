@@ -19,5 +19,6 @@
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "nodejs-pptx": "^1.2.4"
-  }
+  },
+  "type": "module"
 }

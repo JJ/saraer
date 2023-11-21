@@ -1,6 +1,8 @@
 import { crypto } from "https://deno.land/std@0.203.0/crypto/mod.ts";
 import { qrcode } from "https://deno.land/x/qrcode/mod.ts";
 
+const kv = await Deno.openKv();
+
 export interface HeaderData {
   user_agent: string;
   accept: string;
@@ -57,6 +59,7 @@ export class URIgenerator {
     headerData: HeaderData
   ): Promise<string> {
     const uri = this.generateUri(sessionId, talkId, headerData);
+    await kv.set(["tickets", Date.now()], uri);
     return (await qrcode(uri)).toString();
   }
 

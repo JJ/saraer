@@ -11,6 +11,7 @@ import {
 const testURL = "https://test.data/test";
 const aUriGenerator = new URIgenerator(testURL);
 const aBeerBucket = new BeerBucket(10);
+const kv = await Deno.openKv();
 
 Deno.test(
   "The ticket code should be generated correctly",

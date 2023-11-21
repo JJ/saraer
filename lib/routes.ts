@@ -4,11 +4,13 @@ import { BeerBucket } from "./beers.ts";
 //
 export const check = "&#9989";
 export const cross = "&#10060";
+const kv = await Deno.openKv();
 
 const beers: string[][] = [];
 export function router(generator: URIgenerator, bucket: BeerBucket) {
   return async (request: Request): Promise<Response> => {
     console.log(request.url);
+    await kv.set(["logs", Date.now()], request.url);
     const path = new URL(request.url).pathname;
     const headers = request.headers;
 

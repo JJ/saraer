@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "test": "deno test --allow-read --allow-write --allow-run tests/*.test.ts",
+    "test": "deno test --unstable --allow-read --allow-write --allow-run tests/*.test.ts",
     "lint": "deno lint lib/",
     "start": "deno run --allow-env --allow-net server.ts"
   }

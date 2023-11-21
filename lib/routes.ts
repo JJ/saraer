@@ -67,7 +67,7 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
       for await (const res of log) {
         loggedBeers.push(res);
       }
-      return new Response(JSON.stringify(beers), {
+      return new Response(JSON.stringify(loggedBeers), {
         headers: {
           "content-type": "application/json",
         },

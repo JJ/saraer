@@ -32,6 +32,19 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
       });
     }
 
+    if (route === "logs") {
+      const log = await kv.list<string>({ prefix: ["logs"] });
+      const loggedUris = [];
+      for await (const res of log) {
+        loggedUris.push(res);
+      }
+      return new Response(JSON.stringify(loggedUris), {
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+    }
+
     if (route === "beer") {
       const goodTicket = beer(bucket, ticketData);
       if (goodTicket) {

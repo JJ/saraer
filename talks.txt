@@ -1,0 +1,16 @@
+AI Empowering Everyday Operations: A Non-AI-Focused Technological Company's Success Story. Ángel Fernández, Badger Maps
+IA Generativa: Creando la APP del Concurso de Méritos de Andalucía en "cuatro ratos". Francisco Guerrero Aranda, Junta de Andalucía
+Neutral hydrogen profile classification using Convolutional Neural Networks. Manuel Parra-Royón, IAA-CSIC
+La importancia de la preparación y calidad de los datos para abordar la optimización de negocios a través de iniciativas de inteligencia artificial. Javier Paya Aguirre, CIMT Data sl
+Neural networks discovering the origin of the Universe. Ixaka Labadie García, IAA-CSIC
+Application of Artificial Intelligence (AI) in Elite Soccer. Jaime B. Matas-Bustos, University of Granada
+Videojuegos Un campo fascinante para la Inteligencia Artificial. Pablo García Sánchez, Universidad de Granada
+Gaia-X y Blockchain: construyendo espacios de datos confiables. Juan Manuel Muñoz Domínguez, Kolokium Blockchain Technologies  
+El Papel del Machine Learning en un mayor entendimiento en cuestiones clave del campo de la Astrofísica. Maria Ángeles Mendoza Pérez, IAA-CSIC
+Can AI help reduce road accidents?. Manuel Martín Salvador, Blink Technologies
+¿Qué piensan los profesionales de la educación sobre el uso de herramientas de IA como ChatGPT en el aula: es una cuestión de ética docente?. Emilia Martos Sánchez, Junta de Andalucía
+Using AI techniques to create hyper realistic digital twins. Manuel Rodrigo Cabello Malagón, Plain Concepts MVP Artitificial Intelligence
+Beyond the Black Box: The Promise of SHAP in AI Interpretability. Sergio Marco Chapapría, Verne Technology Group
+Con paciencia y saliva, resolvió el problema computacional la hormiga. Antonio Mora, Universidad de Granada
+Using NLP, Emotions and Explainability for Detecting Depression. Santiago González Silot, Universidad de Jaén
+Los datos y las cervezas de DataBeers. JJ Merelo, Universidad de Granada 

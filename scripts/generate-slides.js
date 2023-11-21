@@ -5,29 +5,19 @@ const pptx = new PPTX.Composer();
 
 const text = readFileSync("talks.txt");
 const talks = text.toString().split("\n");
+const authorsAndTalks = talks.map((talk) => talk.split("."));
 
-let titleAndAuthors = Array.from(
-  talks.map((talk) => {
-    const [title, authors] = talk.split(".");
-    return { title, authors };
-  })
-);
-
-console.log(titleAndAuthors);
-titleAndAuthors.pop();
-
-for (let i = 4; i >= 1; i--) {
-  for (let j = 4; j >= 1; j--) {
-    const talk = titleAndAuthors.pop();
-    const { title, authors } = talk;
-    console.log(talk, title, authors);
+for (let i = 1; i <= 4; i++) {
+  for (let j = 1; j <= 4; j++) {
     await pptx.load(`assets/plantilla.pptx`);
+    const [author, talk] = authorsAndTalks.shift();
+    console.log(author, talk);
     await pptx.compose(async (pres) => {
       await pres.getSlide("slide1").addText((text) => {
         text
-          .value(title)
+          .value(author)
           .x(50)
-          .y(2)
+          .y(10)
           .cx(400)
           .cy(200)
           .fontSize(40)
@@ -35,8 +25,8 @@ for (let i = 4; i >= 1; i--) {
       });
       await pres.getSlide("slide1").addText((text) => {
         text
-          .value(authors)
-          .x(200)
+          .value(talk)
+          .x(100)
           .y(100)
           .cx(400)
           .cy(300)
@@ -44,9 +34,14 @@ for (let i = 4; i >= 1; i--) {
           .textColor("FFFF00");
       });
       await pres.getSlide("slide2").addImage((image) => {
-        image.file(`/tmp/session-0-talk-1.png`).x(300).y(100).cx(400).cy(400);
+        image
+          .file(`assets/session-${i}-talk-${j}.png`)
+          .x(300)
+          .y(100)
+          .cx(400)
+          .cy(400);
       });
     });
-    await pptx.save(`assets/plantilla-sesion-${j}-charla-${i}.pptx`);
+    await pptx.save(`assets/plantilla-sesion-${i}-charla-${j}.pptx`);
   }
 }

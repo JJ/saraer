@@ -136,3 +136,4 @@ dist
 tests/test.gif
 
 *.pptx
+.Rproj.user

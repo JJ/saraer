@@ -36,6 +36,7 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
       const goodTicket = beer(bucket, ticketData);
       if (goodTicket) {
         beers.push(ticketData);
+        await kv.set(["beers", Date.now()], ticketData);
         return respond(check);
       } else {
         return respond(cross);

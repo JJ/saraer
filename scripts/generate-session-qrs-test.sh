@@ -9,7 +9,7 @@
 
 # The script will generate 3 sessions with 3 talks each, and output the QR codes in /tmp/qrs
 
-prefix=${1:-"https://databeers-tickets.deno.dev/ticket/"}
+prefix=${1:-"https://databeers-tickets.deno.dev/ticket"}
 talks=${2:-4}
 output=${3:-'/tmp/'}
 
@@ -17,6 +17,6 @@ echo $prefix $sessions $talks $output
 
 
   for j in $(seq 1 $talks); do
-    qrencode -s 48 -d 300 -o $output/session-33-talk-$j.png "$prefix/33/$j"
+    qrencode -s 48 -d 300 -o $output/session-$j-talk-intro.png "$prefix/$j/intro"
   done
 

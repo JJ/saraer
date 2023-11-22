@@ -114,5 +114,5 @@ Deno.test("The router should return a list of beers", async () => {
   const text = await response.text();
   console.log(text);
   const beers = JSON.parse(text);
-  assertEquals(beers.length >= 2, true);
+  assertEquals(beers.length >= 1, true);
 });

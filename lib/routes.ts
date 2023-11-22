@@ -15,12 +15,9 @@ export function router(generator: URIgenerator, bucket: BeerBucket) {
     const headers = request.headers;
 
     const [_, route, ...ticketData] = path.split("/");
-    console.log(ticketData);
     if (ticketData[0] === "") {
-      console.warn("Empty ticket data", ticketData);
       ticketData.shift();
     }
-    console.warn("Fixed ", ticketData);
     if (route === "ticket") {
       const ticketImg = await ticket(generator, ticketData, headers);
       return new Response(`<img src=\'${ticketImg}\'>`, {

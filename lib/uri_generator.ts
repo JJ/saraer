@@ -7,6 +7,8 @@ export interface HeaderData {
   user_agent: string;
   accept: string;
   accept_language: string;
+  accept_encoding: string;
+  connection: string;
 }
 
 export class URIgenerator {
@@ -24,8 +26,11 @@ export class URIgenerator {
     user_agent,
     accept,
     accept_language,
+    accept_encoding,
+    connection
   }: HeaderData): string {
-    const collated = `${user_agent} | ${accept} | ${accept_language}`;
+    const collated = 
+    `${user_agent} | ${accept} | ${accept_language} ${accept_encoding} | ${connection}}`;
     if (this.cache.has(collated)) {
       return this.cache.get(collated) as string;
     }

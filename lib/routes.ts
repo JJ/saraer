@@ -88,6 +88,8 @@ export async function ticket(
     user_agent: headers.get("user-agent") || "",
     accept: headers.get("accept") || "",
     accept_language: headers.get("accept-language") || "",
+    accept_encoding: headers.get("accept-encoding") || "",
+    connection: headers.get("connection") || "",
   });
 
   return ticket;

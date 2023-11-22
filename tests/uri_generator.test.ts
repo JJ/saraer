@@ -11,6 +11,8 @@ import { HeaderData, URIgenerator } from "../lib/uri_generator.ts";
 const userAgentData = JSON.parse(
   await Deno.readTextFile("tests/user-agents.json")
 );
+
+console.log(userAgentData);
 const pairsOfData: Array<Array<HeaderData>> = [];
 for (const i in userAgentData) {
   const headerData = userAgentData[i];

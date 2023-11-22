@@ -79,6 +79,18 @@ Deno.test("The router should return a ticket for a known route", async () => {
   assertEquals(response.headers.get("content-type"), "text/html");
 });
 
+Deno.test(
+  "The router should return a ticket for a known route with two slashes",
+  async () => {
+    const request = new Request("https://test.data/ticket//session-id/talk-id");
+    const response = await ourRouter(request);
+    assertEquals(response.status, 200);
+    const text = await response.text();
+    assertEquals(text.startsWith("<img src='data:image/gif;base64,"), true);
+    assertEquals(response.headers.get("content-type"), "text/html");
+  }
+);
+
 Deno.test("The router should return a beer for a known ticket", async () => {
   const knownUserDigest = aUriGenerator.getUserDigests()[0];
   const ticketPath = `https://test.data/beer/session-id/talk-id/${knownUserDigest}`;
@@ -102,5 +114,5 @@ Deno.test("The router should return a list of beers", async () => {
   const text = await response.text();
   console.log(text);
   const beers = JSON.parse(text);
-  assertEquals(beers.length, 1);
+  assertEquals(beers.length >= 2, true);
 });

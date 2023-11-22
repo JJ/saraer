@@ -4,7 +4,7 @@ import {
   assertThrows,
 } from "https://deno.land/std@0.174.0/testing/asserts.ts";
 
-const maxBeers = 4;
+const maxBeers = 5;
 
 const beerBucket = new BeerBucket(maxBeers);
 
@@ -13,6 +13,7 @@ const tickets = [
   "session-1/talk-1/user-id-1",
   "session-1/talk-2/user-id-2",
   "session-1/talk-2/user-id-3",
+  "/session-1/talk-3/user-id-4",
 ];
 
 Deno.test(" BeerBucket should consume tickets only once", () => {
